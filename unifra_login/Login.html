@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="pragma" content="no-cache">
+<title>Login</title>
+<link href="Login_arquivos/estilo.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="Login_arquivos/jquery-2.js"></script>
+</head>
+<body>
+<div id="login">
+  <div id="login_wrap"> 
+    <!-- Identidade Visual --> 
+    <img src="Login_arquivos/wifi-login.png" alt="Universidade Franciscana" class="loginwrap_img"> 
+    <!-- Campos -->
+    <div id="login_com">
+      <div id="login_title_red">Disponível de segunda a sábado<br>
+das 6h45min às 23h15min</div>
+      <div id="login_title_red"></div>
+      <form action="registra.php" method="POST">
+        <div id="login_boxes">
+	  <input value="http://10.20.0.1/" name="refURL" id="refURL" type="hidden">	
+          <input class="login_fields watermark" data-val="true" data-val-required="O campo Login é obrigatório." id="email" name="email" required="" title="Digite seu E-mail ou Matricula" style="color: rgb(170, 170, 170);" value="E-mail ou Matricula" type="text">
+          <input class="login_fields watermark" data-val="true" data-val-required="O campo Senha é obrigatório." id="senha" name="senha" required="" title="Digite sua senha" style="color: rgb(170, 170, 170);" value="Senha" type="text">
+        </div>
+        <!-- Botão -->
+        <div id="login_bt">
+          <input id="btsenha" value="" class="login_bt_style" type="submit">
+        </div>
+      </form>
+      <!-- Esqueceu senha -->
+      <div id="login_forgot">
+      <div id="login_title_alert">
+              </div>      	
+      <!-- Esqueceu senha -->
+        <div class="login_boxtitle">Caso seja o seu primeiro acesso <br>ou esqueceu sua senha</div>
+        <a id="btn_senha" href="http://login.wlanfran.sma/DefinirSenha.html" target="_blank" class="login_box">Clique aqui</a>               
+      </div>
+       <!--Credito -->
+      <div id="login_credit"><img src="Login_arquivos/logo_ti.png"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {	
+	var watermark_email = 'E-mail ou Matricula';
+        var watermark_senha = 'Senha';
+	//init, set watermark text and class
+	$('#email').val(watermark_email).addClass('watermark');
+	$('#senha').val(watermark_senha).addClass('watermark');
+	//if blur and no value inside, set watermark text and class again.
+ 	$('#email').blur(function(){
+  		if ($(this).val().length == 0){
+    		$(this).val(watermark_email).addClass('watermark');
+		}
+ 	});
+	$('#senha').blur(function(){
+        	if ($(this).val().length == 0){
+            	$(this).val(watermark_senha).addClass('watermark');
+            	$(this).attr('type', 'text');
+        	}
+    	});
+	//if focus and text is watermrk, set it to empty and remove the watermark class
+	$('#email').focus(function(){
+  		if ($(this).val() == watermark_email){
+    		$(this).val('').removeClass('watermark');
+		}
+ 	});
+	$('#senha').focus(function(){
+        	if ($(this).val() == watermark_senha){
+            	$(this).val('').removeClass('watermark');
+            	$(this).attr('type', 'password');
+       	 	}	
+    	});
+        $('#btsenha').focus(function(){
+		if ($('#email').val() == watermark_email){
+                $('#email').val('').removeClass('watermark');
+                }
+                if ($('#email').val() != ''){
+			if ($('#senha').val() == watermark_senha){
+                		$('#senha').val('').removeClass('watermark');
+                		$('#senha').attr('type', 'password');
+			}
+                }
+        });
+});
+</script>
+
+
+</body></html>
